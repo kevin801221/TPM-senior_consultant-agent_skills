@@ -138,3 +138,16 @@ test("runs fixed executables with tools disabled and no shell interpolation", ()
   assert.ok(claude.args.includes("--strict-mcp-config"));
   assert.throws(() => commandFor("bash"));
 });
+
+test("handoff is bounded data included in the selected method prompt", async () => {
+  const handoff = "先前已改為一位工程師；優先研究規格查找";
+  assert.equal(validateRun({ ...request, handoff }).handoff, handoff);
+  assert.match(
+    await buildPrompt({ ...request, handoff }),
+    /先前已改為一位工程師/,
+  );
+  assert.throws(
+    () => validateRun({ ...request, handoff: "a".repeat(24001) }),
+    /移轉/,
+  );
+});

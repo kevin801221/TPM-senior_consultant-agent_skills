@@ -7,7 +7,8 @@
     "build": "vite build",
     "start": "node app/server/index.mjs",
     "test": "node --test app/tests/*.test.mjs",
-    "check": "npm test && npm run build"
+    "check": "npm test && npm run build",
+    "eval:intents": "node scripts/evaluate-intents.mjs"
   },
   "dependencies": {
     "@assistant-ui/react": "0.15.31",

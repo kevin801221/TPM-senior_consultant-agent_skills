@@ -1,4 +1,9 @@
-import { prepareMessages, retryLatestUser } from "./messages.mjs";
+import IntentPanel from "./IntentPanel.jsx";
+import {
+  prepareMessages,
+  retryLatestUser,
+  createHandoff,
+} from "./messages.mjs";
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   AssistantRuntimeProvider,
@@ -130,6 +135,7 @@ function exportMarkdown(item) {
     item.brief.evidence +
     "\n\n### 限制\n" +
     item.brief.constraints +
+    (item.handoff ? "\n\n### 移轉情境\n" + item.handoff : "") +
     "\n\n---\n\n" +
     item.text;
   const url = URL.createObjectURL(
@@ -181,7 +187,9 @@ function AssistantMessage() {
   );
 }
 
-function Conversation({ session, token, onSave, onBusy, onLatest }) {
+function Conversation({ session, token, onSave, onBusy, onLatest, onSwitch }) {
+  const [route, setRoute] = useState(null);
+  const manualOnce = useRef(false);
   const [error, setError] = useState(""),
     [status, setStatus] = useState("");
   const callbacks = useRef({ onSave, onBusy, onLatest });
@@ -190,6 +198,9 @@ function Conversation({ session, token, onSave, onBusy, onLatest }) {
     () => ({
       async *run({ messages, abortSignal }) {
         setError("");
+        setRoute(null);
+        const manualRoute = manualOnce.current;
+        manualOnce.current = false;
         setStatus("正在連接本機引擎…");
         callbacks.current.onBusy(true);
         let text = "",
@@ -204,12 +215,18 @@ function Conversation({ session, token, onSave, onBusy, onLatest }) {
             },
             body: JSON.stringify({
               ...session,
+              manualRoute,
               messages: prepareMessages(messages),
             }),
             signal: abortSignal,
           });
           if (!response.ok) {
             const body = await response.json();
+            if (body.route)
+              setRoute({
+                ...body.route,
+                messages: prepareMessages(messages),
+              });
             throw new Error(body.error || "無法啟動分析。");
           }
           reader = response.body.getReader();
@@ -278,12 +295,40 @@ function Conversation({ session, token, onSave, onBusy, onLatest }) {
             <div>
               <strong>需要處理後再繼續</strong>
               <p>{error}</p>
-              <button
-                className="text-button"
-                onClick={() => retryLatestUser(runtime.thread)}
-              >
-                重試本次分析 <ArrowRight size={14} />
-              </button>
+              {route ? (
+                <div className="intent-actions">
+                  {TASKS.some((t) => t.id === route.task) &&
+                    route.task !== session.task && (
+                      <button
+                        className="secondary-button"
+                        onClick={() => onSwitch(route.task, route.messages)}
+                      >
+                        切換到{TASKS.find((t) => t.id === route.task).title}
+                        並檢查情境
+                      </button>
+                    )}
+                  <button
+                    className="text-button"
+                    onClick={() => {
+                      manualOnce.current = true;
+                      retryLatestUser(runtime.thread);
+                    }}
+                  >
+                    本次由我選擇：沿用
+                    {TASKS.find((t) => t.id === session.task).title}
+                  </button>
+                  <small>
+                    只沿用原技法做分析，不能啟用其他工具或超出執行邊界。
+                  </small>
+                </div>
+              ) : (
+                <button
+                  className="text-button"
+                  onClick={() => retryLatestUser(runtime.thread)}
+                >
+                  重試本次分析 <ArrowRight size={14} />
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -334,6 +379,8 @@ function Conversation({ session, token, onSave, onBusy, onLatest }) {
 }
 
 export default function App() {
+  const [useJev, setUseJev] = useState(false);
+  const [handoff, setHandoff] = useState("");
   const [taskId, setTaskId] = useState("frame"),
     [brief, setBrief] = useState({ ...EMPTY }),
     [provider, setProvider] = useState("codex");
@@ -383,6 +430,7 @@ export default function App() {
   function reset(id = taskId) {
     if (busy) return;
     setSession(null);
+    setHandoff("");
     setArchive(null);
     setLatest(null);
     setTaskId(id);
@@ -390,7 +438,7 @@ export default function App() {
   }
   function start(e) {
     e.preventDefault();
-    if (!boot?.providers[provider]?.ready) return;
+    if (!boot?.providers[provider]?.ready || handoff.length > 24000) return;
     setArchive(null);
     setLatest(null);
     setSession({
@@ -398,6 +446,8 @@ export default function App() {
       task: taskId,
       provider,
       brief: { ...brief },
+      useJev,
+      handoff,
     });
   }
   const selectedStatus = boot?.providers[provider];
@@ -569,6 +619,24 @@ export default function App() {
             </p>
           </div>
           {!session && !archive && (
+            <IntentPanel
+              token={boot?.token}
+              configured={Boolean(boot?.intent?.configured)}
+              enabled={useJev}
+              onEnabled={setUseJev}
+              onConfigured={(configured) =>
+                setBoot((previous) => ({ ...previous, intent: { configured } }))
+              }
+              onSelect={(id, text) => {
+                setTaskId(id);
+                setBrief((previous) => ({
+                  ...previous,
+                  decision: text.slice(0, 6000),
+                }));
+              }}
+            />
+          )}
+          {!session && !archive && (
             <div className="task-grid">
               {TASKS.map((t) => (
                 <button
@@ -651,6 +719,7 @@ export default function App() {
                     onClick={() => {
                       setBrief(archive.brief);
                       reset(archive.task);
+                      setHandoff(archive.handoff || "");
                     }}
                   >
                     以這份情境開始新分析 <ArrowRight size={15} />
@@ -664,6 +733,12 @@ export default function App() {
                   onSave={save}
                   onBusy={setBusy}
                   onLatest={setLatest}
+                  onSwitch={(id, messages) => {
+                    const transferred = createHandoff(session, messages);
+                    setBrief({ ...session.brief });
+                    reset(id);
+                    setHandoff(transferred);
+                  }}
                 />
               ) : (
                 <form onSubmit={start} className="brief-form">
@@ -731,6 +806,29 @@ export default function App() {
                     />
                     <small>時間、人力、預算，以及不能跨過的範圍。</small>
                   </label>
+                  {handoff && (
+                    <label className="field">
+                      <span>
+                        <b>從前一任務移轉的情境</b>
+                        <em>{handoff.length.toLocaleString()} / 24,000 字</em>
+                      </span>
+                      <p className="intent-hint">
+                        已保留先前對話、分析草稿與轉題要求。請檢查這份記錄，並同步更新上方已改變的限制；確認後才開始新分析。
+                      </p>
+                      <textarea
+                        aria-label="移轉情境"
+                        rows={6}
+                        value={handoff}
+                        onChange={(e) => setHandoff(e.target.value)}
+                      />
+                      {handoff.length > 24000 && (
+                        <p role="alert" className="inline-error">
+                          內容過長，已完整保留在此欄位。請先整理為 24,000
+                          字內，才能開始；系統不會自動裁切。
+                        </p>
+                      )}
+                    </label>
+                  )}
                   <div className="form-footer">
                     <span>
                       <LockKeyhole size={14} />
@@ -739,7 +837,10 @@ export default function App() {
                     <button
                       className="primary-button"
                       disabled={
-                        completed < 3 || checking || !selectedStatus?.ready
+                        completed < 3 ||
+                        checking ||
+                        !selectedStatus?.ready ||
+                        handoff.length > 24000
                       }
                     >
                       開始{task.title}
@@ -864,8 +965,10 @@ export default function App() {
                     className="text-button"
                     disabled={busy}
                     onClick={() => {
-                      setBrief((archive || session).brief);
+                      const source = archive || session;
+                      setBrief(source.brief);
                       reset();
+                      setHandoff(source.handoff || "");
                     }}
                   >
                     調整邊界，另開分析 <ArrowRight size={14} />

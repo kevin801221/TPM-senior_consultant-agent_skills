@@ -1,3 +1,4 @@
+import { routeIntent, buildRoutingRequest } from "./intent.mjs";
 import http from "node:http";
 import { readFile, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -159,7 +160,7 @@ async function body(req) {
   const chunks = [];
   for await (const chunk of req) {
     size += chunk.length;
-    if (size > 300000) throw new Error("輸入超過大小限制。");
+    if (size > 450000) throw new Error("輸入超過大小限制。");
     chunks.push(chunk);
   }
   try {
@@ -172,7 +173,11 @@ export function createWorkbench(options = {}) {
   const invoke = options.runAgent || runAgent,
     providers = options.getProviders || getProviders;
   const token = randomBytes(32).toString("hex");
-  let active = false;
+  let active = false,
+    routing = false;
+  let intentKey = options.intentKey ?? process.env.TYPESAFE_API_KEY ?? "";
+  const classify = options.routeIntent || routeIntent;
+  const intentStatus = () => ({ configured: Boolean(intentKey) });
   const server = http.createServer(async (req, res) => {
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("Referrer-Policy", "no-referrer");
@@ -196,12 +201,19 @@ export function createWorkbench(options = {}) {
     const path = new URL(req.url, "http://" + host).pathname;
     if (req.method === "GET" && path === "/api/bootstrap") {
       try {
-        return json(res, 200, { token, providers: await providers() });
+        return json(res, 200, {
+          token,
+          providers: await providers(),
+          intent: intentStatus(),
+        });
       } catch {
         return json(res, 503, { error: "無法檢查引擎狀態。" });
       }
     }
-    if (req.method === "POST" && path === "/api/run") {
+    if (
+      req.method === "POST" &&
+      ["/api/run", "/api/intent", "/api/intent/settings"].includes(path)
+    ) {
       const supplied = String(req.headers["x-session-token"] || "");
       if (
         !origin ||
@@ -211,13 +223,74 @@ export function createWorkbench(options = {}) {
         return json(res, 403, { error: "工作台連線已過期，請重新整理。" });
       if (!req.headers["content-type"]?.startsWith("application/json"))
         return json(res, 415, { error: "需要 JSON 輸入。" });
-      let data;
+      if (path === "/api/intent/settings") {
+        try {
+          const input = await body(req);
+          if (
+            typeof input?.apiKey !== "string" ||
+            input.apiKey.length > 512 ||
+            /[^\x21-\x7e]/.test(input.apiKey)
+          )
+            return json(res, 400, {
+              error: "金鑰格式不符；請貼上完整金鑰，不含空白。",
+            });
+          intentKey = input.apiKey;
+          return json(res, 200, intentStatus());
+        } catch {
+          return json(res, 400, { error: "無法更新 Jev 設定。" });
+        }
+      }
+      if (path === "/api/intent") {
+        let state;
+        try {
+          state = buildRoutingRequest(await body(req)).state;
+        } catch (e) {
+          return json(res, 400, { error: cleanError(e) });
+        }
+        if (active || routing)
+          return json(res, 409, { error: "正在處理其他請求，請稍後再試。" });
+        routing = true;
+        const controller = new AbortController();
+        const cancel = () => {
+          if (!res.writableEnded) controller.abort();
+        };
+        res.on("close", cancel);
+        try {
+          return json(
+            res,
+            200,
+            await classify(state, {
+              apiKey: intentKey,
+              signal: controller.signal,
+            }),
+          );
+        } catch {
+          if (!res.destroyed)
+            return json(res, 503, {
+              error: "意圖判斷未完成，請重試或手動選擇。",
+            });
+        } finally {
+          routing = false;
+          res.off("close", cancel);
+        }
+        return;
+      }
+      let data, useJev, manualRoute;
       try {
-        data = validateRun(await body(req));
+        const raw = await body(req);
+        data = validateRun(raw);
+        if (
+          [raw.useJev, raw.manualRoute].some(
+            (v) => v !== undefined && typeof v !== "boolean",
+          )
+        )
+          throw new Error("路由設定格式不符。");
+        useJev = raw.useJev === true;
+        manualRoute = raw.manualRoute === true;
       } catch (e) {
         return json(res, 400, { error: cleanError(e) });
       }
-      if (active)
+      if (active || routing)
         return json(res, 409, {
           error: "另一個工作正在執行，請等待完成或先停止。",
         });
@@ -232,6 +305,23 @@ export function createWorkbench(options = {}) {
           res.write(JSON.stringify(value) + "\n");
       };
       try {
+        if (useJev && !manualRoute) {
+          const route = await classify(
+            {
+              message: data.messages.at(-1).text,
+              currentTask: data.task,
+              decision: data.brief.decision,
+              context: data.messages
+                .slice(0, -1)
+                .slice(-4)
+                .map((m) => ({ ...m, text: m.text.slice(0, 2000) })),
+            },
+            { apiKey: intentKey, signal: controller.signal },
+          );
+          if (controller.signal.aborted) return;
+          if (route.action !== "continue" || route.task !== data.task)
+            return json(res, 409, { error: route.message, route });
+        }
         const status = await providers();
         if (!status[data.provider]?.ready)
           return json(res, 401, {

@@ -16,9 +16,11 @@ async function setup(
   runAgent = async (_data, _prompt, emit) => {
     emit({ type: "text", text: "test fixture", mode: "replace" });
   },
+  extra = {},
 ) {
   const app = createWorkbench({
     runAgent,
+    ...extra,
     getProviders: async () => ({
       codex: { ready: true, label: "已登入 ChatGPT" },
       claude: { ready: false, label: "需要登入" },
@@ -155,4 +157,123 @@ test("rejects non-ASCII session tokens without crashing the server", async (t) =
     body: JSON.stringify(data),
   });
   assert.equal(response.status, 403);
+});
+
+test("intent settings require same-origin token, never return the key, and can clear it", async (t) => {
+  let received;
+  const { url, headers } = await setup(t, undefined, {
+    routeIntent: async (_input, options) => {
+      received = options.apiKey;
+      return { action: "select", task: "frame" };
+    },
+  });
+  const post = (path, payload, custom = headers) =>
+    fetch(url + path, {
+      method: "POST",
+      headers: custom,
+      body: JSON.stringify(payload),
+    });
+  assert.equal(
+    (
+      await post(
+        "/api/intent/settings",
+        { apiKey: "fixture-secret" },
+        { ...headers, "X-Session-Token": "" },
+      )
+    ).status,
+    403,
+  );
+  assert.equal(
+    (await post("/api/intent/settings", { apiKey: "fixture-secret" })).status,
+    200,
+  );
+  const boot = await (await fetch(url + "/api/bootstrap")).json();
+  assert.equal(boot.intent.configured, true);
+  assert.doesNotMatch(JSON.stringify(boot), /fixture-secret/);
+  assert.equal(
+    (await post("/api/intent", { message: "先幫我釐清需求" })).status,
+    200,
+  );
+  assert.equal(received, "fixture-secret");
+  await post("/api/intent/settings", { apiKey: "" });
+  assert.equal(
+    (await (await fetch(url + "/api/bootstrap")).json()).intent.configured,
+    false,
+  );
+});
+test("per-turn route holds a proposed switch before CLI invocation; explicit manual choice resumes", async (t) => {
+  let calls = 0,
+    classified = 0;
+  const { url, headers } = await setup(
+    t,
+    async (_data, _prompt, emit) => {
+      calls++;
+      emit({ type: "text", text: "fixture", mode: "replace" });
+    },
+    {
+      routeIntent: async (input) => {
+        classified++;
+        assert.equal(input.currentTask, "frame");
+        return { action: "select", task: "validate", message: "切換建議" };
+      },
+    },
+  );
+  const post = (payload) =>
+    fetch(url + "/api/run", {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload),
+    });
+  const held = await post({ ...data, useJev: true });
+  assert.equal(held.status, 409);
+  assert.equal((await held.json()).route.task, "validate");
+  assert.equal(calls, 0);
+  const manual = await post({ ...data, useJev: true, manualRoute: true });
+  assert.equal(manual.status, 200);
+  await manual.text();
+  assert.equal(calls, 1);
+  assert.equal(classified, 1);
+});
+test("continuations use the existing skill and send only bounded routing context", async (t) => {
+  let captured;
+  const { url, headers } = await setup(t, undefined, {
+    routeIntent: async (input) => {
+      captured = input;
+      return { action: "continue", task: "frame" };
+    },
+  });
+  const r = await fetch(url + "/api/run", {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      ...data,
+      useJev: true,
+      messages: [
+        { role: "user", text: "first" },
+        { role: "assistant", text: "a".repeat(3000) },
+        { role: "user", text: "預算只有兩萬元" },
+      ],
+    }),
+  });
+  assert.equal(r.status, 200);
+  await r.text();
+  assert.equal(captured.context[1].text.length, 2000);
+  assert.equal(captured.decision, data.brief.decision);
+  assert.equal(captured.evidence, undefined);
+});
+test("intent API rejects malformed state and unknown destinations before model use", async (t) => {
+  let calls = 0;
+  const { url, headers } = await setup(t, undefined, {
+    routeIntent: async () => {
+      calls++;
+      return { action: "manual" };
+    },
+  });
+  const r = await fetch(url + "/api/intent", {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ message: "幫我處理問題", currentTask: "shell" }),
+  });
+  assert.equal(r.status, 400);
+  assert.equal(calls, 0);
 });
