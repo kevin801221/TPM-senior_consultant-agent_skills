@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">AI Thinking OS</title>
+  <desc id="desc">56 個思考技法，給資深 AI 顧問與 PM 的思考工具箱。拆對問題、挑戰提案、設計驗證。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111b30"/>
+      <stop offset="1" stop-color="#080d16"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#26354d" stroke-width="1" opacity=".35"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="640" rx="24" fill="url(#bg)"/>
+  <rect width="1280" height="640" rx="24" fill="url(#grid)"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif">
+    <rect x="64" y="60" width="300" height="38" rx="19" fill="#c7fa78"/>
+    <text x="214" y="85" text-anchor="middle" font-size="15" font-weight="700" fill="#122018" letter-spacing="2">FOR AI CONSULTANTS &amp; PMs</text>
+    <text x="60" y="210" fill="#f3f6fc" font-size="82" font-weight="800" letter-spacing="-3">AI Thinking OS</text>
+    <text x="64" y="280" fill="#c7fa78" font-size="38" font-weight="700">把 AI 產出，推進到產品決策。</text>
+    <text x="66" y="330" fill="#a9b7cc" font-size="22">56 個思考技法 · 情境選招 · 按需載入</text>
+    <g transform="translate(64 404)">
+      <rect width="360" height="140" rx="16" fill="#172338" stroke="#34435a"/>
+      <text x="24" y="38" fill="#c7fa78" font-size="14" letter-spacing="2">01 / FRAME</text>
+      <text x="24" y="79" fill="#f3f6fc" font-size="28" font-weight="700">拆對問題</text>
+      <text x="24" y="113" fill="#a9b7cc" font-size="18">把模糊需求縮成可處理的題目</text>
+    </g>
+    <g transform="translate(460 404)">
+      <rect width="360" height="140" rx="16" fill="#172338" stroke="#34435a"/>
+      <text x="24" y="38" fill="#c7fa78" font-size="14" letter-spacing="2">02 / CHALLENGE</text>
+      <text x="24" y="79" fill="#f3f6fc" font-size="28" font-weight="700">挑戰提案</text>
+      <text x="24" y="113" fill="#a9b7cc" font-size="18">先找出主管會追問的證據缺口</text>
+    </g>
+    <g transform="translate(856 404)">
+      <rect width="360" height="140" rx="16" fill="#172338" stroke="#34435a"/>
+      <text x="24" y="38" fill="#c7fa78" font-size="14" letter-spacing="2">03 / VALIDATE</text>
+      <text x="24" y="79" fill="#f3f6fc" font-size="28" font-weight="700">設計驗證</text>
+      <text x="24" y="113" fill="#a9b7cc" font-size="18">讓下一筆投入有可檢驗的依據</text>
+    </g>
+    <text x="64" y="596" fill="#7586a2" font-size="15" letter-spacing="1">PM-THINKING / A PRACTICAL THINKING SKILL FOR AI AGENTS</text>
+    <circle cx="1160" cy="180" r="64" fill="none" stroke="#c7fa78" stroke-width="2" opacity=".7"/>
+    <circle cx="1160" cy="180" r="46" fill="none" stroke="#c7fa78" stroke-width="1" opacity=".3"/>
+    <text x="1160" y="198" text-anchor="middle" fill="#c7fa78" font-size="50" font-weight="700">56</text>
+  </g>
+</svg>
