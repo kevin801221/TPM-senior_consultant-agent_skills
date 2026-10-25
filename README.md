@@ -27,7 +27,44 @@
 
 <br>
 
-## 個人本機工作台（新增）
+## 先註冊為個人 skill：任何專案都能自然觸發
+
+**安裝一次，之後直接描述問題。** 不必切到本 Repo，也不必每次輸入 skill 名稱或技法編號。Coding agent 依 `SKILL.md` 的 `description` 判斷何時啟用，啟用後再按情境選招；不需要前端或 Jev API key。
+
+在本 Repo 根目錄（能看到 `SKILL.md` 的位置）執行下列指令。macOS／Linux 使用符號連結，兩個 agent 共用同一份方法庫，更新 Repo 後同步生效。
+
+```bash
+# Codex：個人層級，跨專案可用
+mkdir -p "$HOME/.agents/skills"
+if [ ! -e "$HOME/.agents/skills/pm-thinking" ] && [ ! -L "$HOME/.agents/skills/pm-thinking" ]; then
+  ln -s "$PWD" "$HOME/.agents/skills/pm-thinking"
+fi
+
+# Claude Code：個人層級，跨專案可用
+mkdir -p "$HOME/.claude/skills"
+if [ ! -e "$HOME/.claude/skills/pm-thinking" ] && [ ! -L "$HOME/.claude/skills/pm-thinking" ]; then
+  ln -s "$PWD" "$HOME/.claude/skills/pm-thinking"
+fi
+```
+
+只使用其中一個 agent，就執行對應區塊。若目的地已有同名 skill，上述指令不會覆蓋；先檢查它是否指向這份 Repo。保留 Repo 的位置，搬動或刪除它會讓連結失效。Windows 可將完整方法庫複製到對應的個人 skills 目錄，更新時需同步副本。
+
+開啟新的 Codex／Claude Code 對話，在任何專案直接說：
+
+```text
+客戶想導入客服 AI，但需求太散，不知道先做哪一塊。
+客服每天查找規格文件，但還沒有耗時與錯誤率資料。
+只有兩週、兩位工程師，不能串正式系統。
+幫我釐清值得先解的問題。
+```
+
+預期 agent 自動啟用 `pm-thinking`，載入情境路由並選擇最少的適用技法。接著說「主管會怎麼質疑？」或「怎麼驗證真的有效？」，讓 agent 根據前文重新選招；一般 bug 修復、重構或純潤稿不應觸發。
+
+自動選用由 agent 判斷，並非每句話都強制觸發。若沒有載入，可在 Codex 用 `/skills` 查看，或在 Claude Code 的 `/` 選單搜尋 `pm-thinking`；尚未顯示時重開 agent。`$pm-thinking`（Codex）、`/pm-thinking`（Claude Code）與技法編號保留作除錯或明確覆寫，並非日常必要步驟。
+
+官方載入規則：[Codex skills](https://learn.chatgpt.com/docs/build-skills)、[Claude Code skills](https://code.claude.com/docs/en/skills)。
+
+## 個人本機工作台（選用）
 
 透過前端選擇「釐清需求／提案預演／設計驗證」，填寫決策、已知資訊與限制，再使用你本機已登入的 Codex 或 Claude Code 訂閱執行。
 
@@ -41,25 +78,24 @@ npm start
 
 ## 怎麼觸發 skill？可直接貼上的 few-shot
 
-**第一次使用，先讓 Agent 讀到 skill。** 在本 Repo 根目錄貼上：
+完成上方個人註冊後，直接用自然語言。例如：
 
 ```text
-請讀取 ./SKILL.md，使用 pm-thinking。
 客戶只說「想導入 AI」，需求一直變。
 請先選一個技法拆出值得處理的問題；不要直接寫完整 PRD。
 已知：客服每天查規格，還沒有耗時基準。
 限制：兩週、兩位工程師、不得連正式資料。
 ```
 
-若已把 `pm-thinking` 安裝在工具可發現的 skills 目錄，也可以直接點名「使用 pm-thinking」。自然語言是否自動觸發由 Agent 的 skill discovery 決定；README 的例句本身不會自動註冊 skill。
+尚未註冊時，可在本 Repo 對 agent 說「請讀取 ./SKILL.md」作為臨時入口。README 的例句本身不會註冊 skill；個人目錄中的 `SKILL.md` 才是 agent 發現技能的入口。
 
 以下是**教學範例與預期路由，不是模型準確率測試結果**。背景、證據與限制請換成自己的資料。
 
 | 輸入範例 | 建議技法／處理方式 | 預期產出 |
 | :--- | :--- | :--- |
-| 「使用 pm-thinking。客戶想做 AI，但問題太大，幫我拆小並選優先項。」 | #44 分割煩惱 | 問題切片、已知與假設、下一步 |
-| 「使用 pm-thinking。明天要向財務與資訊主管提案，幫我預演追問。」 | #31 模擬批評 | 角色追問、證據缺口、會前行動 |
-| 「使用 pm-thinking。摘要 Demo 做好了，如何驗證真的省下核對時間？」 | #37 驗證測試 | 比較基準、最小測試、停止條件 |
+| 「客戶想做 AI，但問題太大，幫我拆小並選優先項。」 | #44 分割煩惱 | 問題切片、已知與假設、下一步 |
+| 「明天要向財務與資訊主管提案，幫我預演追問。」 | #31 模擬批評 | 角色追問、證據缺口、會前行動 |
+| 「摘要 Demo 做好了，如何驗證真的省下核對時間？」 | #37 驗證測試 | 比較基準、最小測試、停止條件 |
 | 「使用 pm-thinking #21，把以下 30 個點子分群，保留原編號。」 | #21 團隊的創造力；完整 skill 可用，本機工作台尚未開放 | 可追溯的分群 |
 | 已在釐清需求時：「補充：預算降為兩萬元，不能用正式資料。」 | 沿用原技法 | 更新限制，不因「預算」自動換招 |
 | 「問題切好了，現在改用 #37 設計對照實驗。」 | 建議切到 #37 | 工作台先確認新任務與情境 |
@@ -183,15 +219,13 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 
 ### 01　準備方法庫
 
-下載本 Repo，保留 `SKILL.md` 與完整 `references/` 目錄。讓能讀取檔案的 Agent 開啟它。
+下載本 Repo，保留 `SKILL.md` 與完整 `references/` 目錄，依上方說明註冊到個人 skills 目錄。
 
 ### 02　貼上你的決策與限制
 
-以下假設 Agent 已在 Repo 根目錄。若放在其他位置，將 `./SKILL.md` 換成實際路徑。
+註冊後可在任何專案直接描述需求：
 
 ```text
-請讀取 ./SKILL.md，使用 pm-thinking 協助我。
-
 我的角色：［AI 顧問／PM／其他］
 要做的決策：［現在需要決定什麼］
 已知情況：［已有資料與觀察］

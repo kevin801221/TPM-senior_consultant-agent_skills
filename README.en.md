@@ -12,11 +12,29 @@ The technique library and worked examples are currently in Traditional Chinese. 
 
 ## Start with one decision
 
-Download the repository and keep `SKILL.md` together with `references/`. In an agent that can read local files, use the actual path to the skill:
+Register the skill at the personal level once, then describe your problem naturally from any project. Codex or Claude Code uses the skill description to decide when to activate it; the skill then selects a suitable technique. The frontend and Jev are optional.
+
+Keep the repository in a stable location. Run the relevant block from its root (the directory containing `SKILL.md`) on macOS or Linux:
+
+```bash
+# Codex
+mkdir -p "$HOME/.agents/skills"
+if [ ! -e "$HOME/.agents/skills/pm-thinking" ] && [ ! -L "$HOME/.agents/skills/pm-thinking" ]; then
+  ln -s "$PWD" "$HOME/.agents/skills/pm-thinking"
+fi
+
+# Claude Code
+mkdir -p "$HOME/.claude/skills"
+if [ ! -e "$HOME/.claude/skills/pm-thinking" ] && [ ! -L "$HOME/.claude/skills/pm-thinking" ]; then
+  ln -s "$PWD" "$HOME/.claude/skills/pm-thinking"
+fi
+```
+
+These commands preserve existing entries; check any existing same-name skill before using it. Both links use the same source, so repository updates are shared. Moving or deleting the repository breaks the links. On Windows, copy the complete library into the corresponding personal skill directory and keep the copy updated.
+
+Start a new agent session in any project and ask:
 
 ```text
-Read ./ai-thinking-os/SKILL.md and use the pm-thinking skill.
-
 Decision: Should we invest in a customer-support AI pilot?
 Known: Agents frequently search product documentation. We have no timing baseline yet.
 Constraints: Two weeks, two engineers, no production integration.
@@ -25,7 +43,11 @@ Choose one useful technique. Separate facts, inferences, and assumptions.
 Give me a concrete next step. Respond in English.
 ```
 
-If your agent is already at the repository root, use `./SKILL.md`. In a chat tool, paste the skill instructions and the selected technique alongside your context.
+Automatic invocation is an agent judgment, not a guarantee for every message. Ordinary debugging, refactoring, and text polishing should not trigger this skill. To check discovery, use `/skills` in Codex or find `pm-thinking` in Claude Code's `/` menu; restart the agent if it is missing. Explicit `$pm-thinking` (Codex) or `/pm-thinking` (Claude Code) is an optional override, not the normal entry point.
+
+Without registration, ask a file-capable agent to read the actual path to `SKILL.md`. In a chat tool, paste the skill and the selected technique alongside your context.
+
+Official discovery rules: [Codex](https://learn.chatgpt.com/docs/build-skills), [Claude Code](https://code.claude.com/docs/en/skills).
 
 ## Choose your entry point
 
