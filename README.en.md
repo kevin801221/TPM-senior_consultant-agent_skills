@@ -53,7 +53,7 @@ Official discovery rules: [Codex](https://learn.chatgpt.com/docs/build-skills), 
 
 | Situation | Technique | Useful output |
 | --- | --- | --- |
-| A client asks for “AI transformation” | #44 Problem slicing | A bounded problem to investigate |
+| A client asks for “AI transformation” | [#44 Problem slicing](references/techniques/044-problem-slicing.md) | A bounded problem to investigate |
 | A proposal needs scrutiny | #31 Executive critique | Simulated objections and evidence gaps |
 | An agent workflow may fail | #30 Risk review | Failure causes, mitigations, residual risks |
 | A workshop produced too many ideas | #21 Idea clustering | Groups with traceable source IDs |
