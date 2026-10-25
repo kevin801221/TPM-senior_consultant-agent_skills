@@ -4,6 +4,8 @@
 
 ## 1 把 AI 轉型需求縮小成可處理的題目
 
+技法全文：[#44 分割煩惱](../references/techniques/044-problem-slicing.md)
+
 ```text
 使用 pm-thinking #44。
 客戶目前的說法：［原始需求］
@@ -16,6 +18,8 @@
 適合帶進需求訪談。切片後若已能安排訪談，就先完成這一步。
 
 ## 2 預演主管會追問的問題
+
+技法全文：[#31 模擬批評](../references/techniques/031-executive-critique.md)
 
 ```text
 使用 pm-thinking #31。
@@ -31,6 +35,8 @@
 
 ## 3 找出 AI Agent 專案會在哪裡失敗
 
+技法全文：[#30 檢測風險](../references/techniques/030-risk-review.md)
+
 ```text
 使用 pm-thinking #30 的風險檢視。
 方案：［功能、使用者、流程、會操作的系統］
@@ -45,6 +51,8 @@
 
 ## 4 工作坊結束後整理點子
 
+技法全文：[#21 團隊的創造力](../references/techniques/021-idea-clustering.md)
+
 ```text
 使用 pm-thinking #21，先統一格式，再分群。
 以下每個點子有原始 ID：［貼上清單］
@@ -56,6 +64,8 @@
 適合把會議白板轉成可追溯的討論材料。
 
 ## 5 判斷 Demo 是否值得進入試點
+
+技法全文：[#37-2 驗證測試的步驟](../references/techniques/037-validation-test.md)
 
 ```text
 使用 pm-thinking #37-2。
@@ -71,6 +81,8 @@
 適合試點規劃。先測會讓整個方案不成立的關鍵假設。
 
 ## 6 用一頁說清楚產品價值
+
+技法全文：[#33 發布未來的報導](../references/techniques/033-future-press-release.md)
 
 ```text
 使用 pm-thinking #33，寫一份內部討論用的未來新聞稿。

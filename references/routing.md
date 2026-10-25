@@ -6,38 +6,38 @@
 
 | 現在的問題 | 優先考慮 | 分流條件 |
 | --- | --- | --- |
-| 不知道真正卡在哪裡 | #44、#40、#48 | 範圍太大用 #44；長期阻力用 #40；既有產品摩擦用 #48。 |
-| 沒有新方向 | #03、#08、#17 | 破冰用 #03；擴展觀點用 #08；已有流程想改動用 #17。 |
-| 點子很多，需要整理 | #21、#24、#25 | 歸類用 #21；簡短說明用 #24；完整計畫才用 #25。 |
-| 擔心商業方案站不住腳 | #28、#30、#31 | 能力適配用 #28；失敗風險用 #30；提案預演用 #31。 |
-| 想知道是否值得做 | #37 | 先驗證關鍵假設；有人想用與有人願意付費分開檢驗。 |
-| 想說清楚或推進方案 | #33、#35、#36、#38 | 新聞稿、初期顧客、影片腳本、行動安排分別選用。 |
+| 不知道真正卡在哪裡 | [#44](techniques/044-problem-slicing.md)、[#40](techniques/040-structural-blockers.md)、[#48](techniques/048-product-pain.md) | 範圍太大用 [#44](techniques/044-problem-slicing.md)；長期阻力用 [#40](techniques/040-structural-blockers.md)；既有產品摩擦用 [#48](techniques/048-product-pain.md)。 |
+| 沒有新方向 | [#03](techniques/003-flawed-ideas.md)、[#08](techniques/008-six-perspectives.md)、[#17](techniques/017-scamper.md) | 破冰用 [#03](techniques/003-flawed-ideas.md)；擴展觀點用 [#08](techniques/008-six-perspectives.md)；已有流程想改動用 [#17](techniques/017-scamper.md)。 |
+| 點子很多，需要整理 | [#21](techniques/021-idea-clustering.md)、[#24](techniques/024-idea-sketch.md)、[#25](techniques/025-six-w-three-h.md) | 歸類用 [#21](techniques/021-idea-clustering.md)；簡短說明用 [#24](techniques/024-idea-sketch.md)；完整計畫才用 [#25](techniques/025-six-w-three-h.md)。 |
+| 擔心商業方案站不住腳 | [#28](techniques/028-competitive-strengths.md)、[#30](techniques/030-risk-review.md)、[#31](techniques/031-executive-critique.md) | 能力適配用 [#28](techniques/028-competitive-strengths.md)；失敗風險用 [#30](techniques/030-risk-review.md)；提案預演用 [#31](techniques/031-executive-critique.md)。 |
+| 想知道是否值得做 | [#37](techniques/037-validation-test.md) | 先驗證關鍵假設；有人想用與有人願意付費分開檢驗。 |
+| 想說清楚或推進方案 | [#33](techniques/033-future-press-release.md)、[#35](techniques/035-early-customers.md)、[#36](techniques/036-video-pitch.md)、[#38](techniques/038-action-plan.md) | 新聞稿、初期顧客、影片腳本、行動安排分別選用。 |
 
 ## 容易混淆的邊界
 
 - **需求釐清與發散：**已有明確題目就直接發散，不強迫先做根因分析。
-- **#40 與 #45：**前者理解長期阻力；後者把候選根因轉成可發想的題目。原因未驗證時都不能稱為確定根因。
-- **#13／#14／#17 與 #15／#16／#54–#56：**前組改善當下產品或服務；後組探索未來，不因流程改動就展開長期預測。
-- **#18 與 #21：**前者分析點子集合的盲點；後者歸類且保留原始差異。
-- **#47–#51：**依序側重一般困擾、產品摩擦、不滿因素、改善滿意度、需求優先序；依問題選一項，不把五種分析全部附上。
-- **#33 與 #37：**未來新聞稿描述價值；實驗取得證據。寫出好新聞稿不等於已驗證需求。
-- **#34、#35、#37：**分別處理財務情境、找初期顧客與驗證假設；不強迫綁成一套 GTM 流程。
+- **[#40](techniques/040-structural-blockers.md) 與 [#45](techniques/045-root-cause-questions.md)：**前者理解長期阻力；後者把候選根因轉成可發想的題目。原因未驗證時都不能稱為確定根因。
+- **[#13](techniques/013-triz.md)／[#14](techniques/014-ideal-solution.md)／[#17](techniques/017-scamper.md) 與 [#15](techniques/015-future-drivers.md)／[#16](techniques/016-historical-doubling.md)／[#54](techniques/054-latest-trends.md)–[#56](techniques/056-century-scenario.md)：**前組改善當下產品或服務；後組探索未來，不因流程改動就展開長期預測。
+- **[#18](techniques/018-idea-bias.md) 與 [#21](techniques/021-idea-clustering.md)：**前者分析點子集合的盲點；後者歸類且保留原始差異。
+- **[#47](techniques/047-consumer-concerns.md)–[#51](techniques/051-customer-priorities.md)：**依序側重一般困擾、產品摩擦、不滿因素、改善滿意度、需求優先序；依問題選一項，不把五種分析全部附上。
+- **[#33](techniques/033-future-press-release.md) 與 [#37](techniques/037-validation-test.md)：**未來新聞稿描述價值；實驗取得證據。寫出好新聞稿不等於已驗證需求。
+- **[#34](techniques/034-sales-plan.md)、[#35](techniques/035-early-customers.md)、[#37](techniques/037-validation-test.md)：**分別處理財務情境、找初期顧客與驗證假設；不強迫綁成一套 GTM 流程。
 
 ## 多段 Prompt 的使用方式
 
-- #21：先 ① 統一格式，再以結果做 ② 分群；保留來源編號。
-- #23：指定參考業界用 ①；沒有方向時用 ②。
-- #28：先 ① 盤點成功能力；自家公司有落差時才用 ②。
-- #30：先 ① 找風險，需要改案時再用 ②。
-- #33：依需要選內部探索或經編輯的新聞稿版本，沒有要求時不重複寫兩版。
-- #37：有形商品選 ①，機制或服務選 ②；不是順序連招。
-- #22／#23 所需的「此前創意」若不在對話裡，不得自行捏造；#11 需要可查看的圖片。
+- [#21](techniques/021-idea-clustering.md)：先 ① 統一格式，再以結果做 ② 分群；保留來源編號。
+- [#23](techniques/023-cross-industry-models.md)：指定參考業界用 ①；沒有方向時用 ②。
+- [#28](techniques/028-competitive-strengths.md)：先 ① 盤點成功能力；自家公司有落差時才用 ②。
+- [#30](techniques/030-risk-review.md)：先 ① 找風險，需要改案時再用 ②。
+- [#33](techniques/033-future-press-release.md)：依需要選內部探索或經編輯的新聞稿版本，沒有要求時不重複寫兩版。
+- [#37](techniques/037-validation-test.md)：有形商品選 ①，機制或服務選 ②；不是順序連招。
+- [#22](techniques/022-idea-combination.md)／[#23](techniques/023-cross-industry-models.md) 所需的「此前創意」若不在對話裡，不得自行捏造；[#11](techniques/011-image-inspiration.md) 需要可查看的圖片。
 
 ## 按需組合的例子
 
-- 問題太廣：#44 切片後，仍不理解長期阻力才加 #40。
-- 工作坊：#03 破冰後，使用者需要整理成果才加 #21。
-- 提案：#31 找到證據缺口後，挑最重要的假設用 #37 設計驗證。
+- 問題太廣：[#44](techniques/044-problem-slicing.md) 切片後，仍不理解長期阻力才加 [#40](techniques/040-structural-blockers.md)。
+- 工作坊：[#03](techniques/003-flawed-ideas.md) 破冰後，使用者需要整理成果才加 [#21](techniques/021-idea-clustering.md)。
+- 提案：[#31](techniques/031-executive-critique.md) 找到證據缺口後，挑最重要的假設用 [#37](techniques/037-validation-test.md) 設計驗證。
 
 組合由前一步留下的問題決定；已能回答當前問題就停止。
 

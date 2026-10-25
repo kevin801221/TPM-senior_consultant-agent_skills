@@ -94,15 +94,17 @@ npm start
 | 輸入範例 | 建議技法／處理方式 | 預期產出 |
 | :--- | :--- | :--- |
 | 「客戶想做 AI，但問題太大，幫我拆小並選優先項。」 | [#44 分割煩惱](references/techniques/044-problem-slicing.md) | 問題切片、已知與假設、下一步 |
-| 「明天要向財務與資訊主管提案，幫我預演追問。」 | #31 模擬批評 | 角色追問、證據缺口、會前行動 |
-| 「摘要 Demo 做好了，如何驗證真的省下核對時間？」 | #37 驗證測試 | 比較基準、最小測試、停止條件 |
-| 「使用 pm-thinking #21，把以下 30 個點子分群，保留原編號。」 | #21 團隊的創造力；完整 skill 可用，本機工作台尚未開放 | 可追溯的分群 |
+| 「明天要向財務與資訊主管提案，幫我預演追問。」 | [#31](references/techniques/031-executive-critique.md) 模擬批評 | 角色追問、證據缺口、會前行動 |
+| 「摘要 Demo 做好了，如何驗證真的省下核對時間？」 | [#37](references/techniques/037-validation-test.md) 驗證測試 | 比較基準、最小測試、停止條件 |
+| 「使用 pm-thinking [#21](references/techniques/021-idea-clustering.md)，把以下 30 個點子分群，保留原編號。」 | [#21](references/techniques/021-idea-clustering.md) 團隊的創造力；完整 skill 可用，本機工作台尚未開放 | 可追溯的分群 |
 | 已在釐清需求時：「補充：預算降為兩萬元，不能用正式資料。」 | 沿用原技法 | 更新限制，不因「預算」自動換招 |
-| 「問題切好了，現在改用 #37 設計對照實驗。」 | 建議切到 #37 | 工作台先確認新任務與情境 |
+| 「問題切好了，現在改用 [#37](references/techniques/037-validation-test.md) 設計對照實驗。」 | 建議切到 [#37](references/techniques/037-validation-test.md) | 工作台先確認新任務與情境 |
 | 「幫我處理一下。」／「預演提案和設計實驗都要，還沒決定先做哪個。」 | 先釐清 | 選一個這次要產出的成果 |
 | 「幫我修 bug／部署上線。」 | 不觸發 PM 分析 | 交給適合的工程流程 |
 
 知道編號時，可以直接指名：
+
+技法全文：[#37 驗證測試的步驟](references/techniques/037-validation-test.md)
 
 ```text
 請讀取 ./SKILL.md，使用 pm-thinking #37。
@@ -114,7 +116,7 @@ npm start
 
 ### 在前端用 Jev 選招（選用）
 
-工作台新增「先說你想解決什麼」。可輸入 `#44 問題…`、`#31 問題…` 或 `#37 問題…`，不需要 Jev；也可連接自己的 TypeSafe API key，用自然語言取得建議。
+工作台新增「先說你想解決什麼」。可輸入 [`#44 問題…`](references/techniques/044-problem-slicing.md)、[`#31 問題…`](references/techniques/031-executive-critique.md) 或 [`#37 問題…`](references/techniques/037-validation-test.md)，不需要 Jev；也可連接自己的 TypeSafe API key，用自然語言取得建議。
 
 ```mermaid
 flowchart LR
@@ -190,7 +192,7 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 ### 用 [#44 分割煩惱](references/techniques/044-problem-slicing.md)，把需求拆成可研究的切片
 
 <details>
-<summary>展開／收合 #44 的使用指南與原始 Prompt</summary>
+<summary>展開／收合 <a href="references/techniques/044-problem-slicing.md">#44</a> 的使用指南與原始 Prompt</summary>
 
 **使用指南（編輯補充）**
 
@@ -201,7 +203,7 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 
 **原始 Prompt（逐字保留）**
 
-- **#44 分割煩惱 (p.426)**
+- **[#44](references/techniques/044-problem-slicing.md) 分割煩惱 (p.426)**
   我想製作從複雜問題或煩惱中生出創意的題目。具體來說，為能更容易思考〈寫入煩惱〉，請生出多個稍微改動過後的題目。要使之成為容易思考的題目，「設定用時間（季節、星期幾、時段、狀況等）區分於特定時候的特殊化題目」、「設定以空間（場所、房間、部分、部位等）區分於特定地方限定的題目」、「設定條件（限制、條件、物理特性、天候條件、其他要素）簡單狀況下的限定題目」這三者改動法將很有幫助。
 
 以上內容摘自 [#44 分割煩惱技法全文](references/techniques/044-problem-slicing.md)。共同執行原則見 [SKILL.md](SKILL.md)。
@@ -216,7 +218,7 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 
 如果能取得有版本資訊的文件，可以先探索第一個切片。這個方向符合初期限制；它是否足夠頻繁、是否值得解，仍需觀察實際流程。
 
-### 當你需要決定是否投入，再用 #37 設計測試
+### 當你需要決定是否投入，再用 [#37](references/techniques/037-validation-test.md) 設計測試
 
 將決策題目縮小為：
 
@@ -264,6 +266,8 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 
 直接指定編號，Agent 可跳過選招：
 
+技法全文：[#31 模擬批評](references/techniques/031-executive-critique.md)
+
 ```text
 請讀取 ./SKILL.md，使用 pm-thinking 的 #31。
 
@@ -291,14 +295,16 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 
 ## 56 招，從你需要的產出開始選
 
+點選任一編號，即可查看該技法的使用指南與原始 Prompt。
+
 | 方法分類 | 適合處理的問題 | 技法編號 |
 | :--- | :--- | :--- |
-| **問題釐清與受眾** | 痛點在哪裡？問題怎麼切？誰會採用？ | #39–#53 |
-| **發散與跨域靈感** | 還有什麼方向？可以借用什麼觀點？ | #01–#12 |
-| **流程改善與未來情境** | 現在怎麼改？未來可能怎麼變？ | #13–#17、#54–#56 |
-| **整理與具體化** | 點子怎麼分群？概念還缺哪些資訊？ | #18–#25 |
-| **商業假設與壓力測試** | 商業邏輯成立嗎？可能在哪裡失敗？ | #26–#32 |
-| **表達、驗證與落地** | 價值怎麼說？如何測試？下一步做什麼？ | #33–#38 |
+| **問題釐清與受眾** | 痛點在哪裡？問題怎麼切？誰會採用？ | [#39](references/techniques/039-enabling-factors.md) · [#40](references/techniques/040-structural-blockers.md) · [#41](references/techniques/041-social-problem.md) · [#42](references/techniques/042-global-precedents.md) · [#43](references/techniques/043-cross-domain-cases.md) · [#44](references/techniques/044-problem-slicing.md) · [#45](references/techniques/045-root-cause-questions.md) · [#46](references/techniques/046-abstraction-ladder.md) · [#47](references/techniques/047-consumer-concerns.md) · [#48](references/techniques/048-product-pain.md) · [#49](references/techniques/049-dissatisfaction-drivers.md) · [#50](references/techniques/050-satisfaction-improvement.md) · [#51](references/techniques/051-customer-priorities.md) · [#52](references/techniques/052-beneficiaries.md) · [#53](references/techniques/053-candidate-segments.md) |
+| **發散與跨域靈感** | 還有什麼方向？可以借用什麼觀點？ | [#01](references/techniques/001-diverse-traits.md) · [#02](references/techniques/002-tenfold-goal.md) · [#03](references/techniques/003-flawed-ideas.md) · [#04](references/techniques/004-artistic-inspiration.md) · [#05](references/techniques/005-expert-perspectives.md) · [#06](references/techniques/006-environmental-ideas.md) · [#07](references/techniques/007-association-expansion.md) · [#08](references/techniques/008-six-perspectives.md) · [#09](references/techniques/009-random-words.md) · [#10](references/techniques/010-heterogeneous-elements.md) · [#11](references/techniques/011-image-inspiration.md) · [#12](references/techniques/012-unconstrained-ideation.md) |
+| **流程改善與未來情境** | 現在怎麼改？未來可能怎麼變？ | [#13](references/techniques/013-triz.md) · [#14](references/techniques/014-ideal-solution.md) · [#15](references/techniques/015-future-drivers.md) · [#16](references/techniques/016-historical-doubling.md) · [#17](references/techniques/017-scamper.md) · [#54](references/techniques/054-latest-trends.md) · [#55](references/techniques/055-trend-deduction.md) · [#56](references/techniques/056-century-scenario.md) |
+| **整理與具體化** | 點子怎麼分群？概念還缺哪些資訊？ | [#18](references/techniques/018-idea-bias.md) · [#19](references/techniques/019-strength-first.md) · [#20](references/techniques/020-idea-improvement.md) · [#21](references/techniques/021-idea-clustering.md) · [#22](references/techniques/022-idea-combination.md) · [#23](references/techniques/023-cross-industry-models.md) · [#24](references/techniques/024-idea-sketch.md) · [#25](references/techniques/025-six-w-three-h.md) |
+| **商業假設與壓力測試** | 商業邏輯成立嗎？可能在哪裡失敗？ | [#26](references/techniques/026-lean-canvas.md) · [#27](references/techniques/027-idea-evaluation.md) · [#28](references/techniques/028-competitive-strengths.md) · [#29](references/techniques/029-influential-stakeholders.md) · [#30](references/techniques/030-risk-review.md) · [#31](references/techniques/031-executive-critique.md) · [#32](references/techniques/032-similar-concepts.md) |
+| **表達、驗證與落地** | 價值怎麼說？如何測試？下一步做什麼？ | [#33](references/techniques/033-future-press-release.md) · [#34](references/techniques/034-sales-plan.md) · [#35](references/techniques/035-early-customers.md) · [#36](references/techniques/036-video-pitch.md) · [#37](references/techniques/037-validation-test.md) · [#38](references/techniques/038-action-plan.md) |
 
 ![56 個技法的六大分類：釐清、發散、改善、整理、商業檢視與驗證](assets/img/v2/04-method-map.png)
 

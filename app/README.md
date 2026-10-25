@@ -33,7 +33,7 @@ Jev 是獨立的 TypeSafe 服務，需要自己的帳號與用量；不由 Codex
 
 ### 路由行為
 
-- 只認開頭的明確指令：`#44 問題`、`pm-thinking #31 問題`、`/pm-thinking #37 問題`。編號與文字間需有空白。這條路徑不呼叫 Jev；段落中引用編號不視為換題指令。
+- 只認開頭的明確指令：[`#44 問題`](../references/techniques/044-problem-slicing.md)、[`pm-thinking #31 問題`](../references/techniques/031-executive-critique.md)、[`/pm-thinking #37 問題`](../references/techniques/037-validation-test.md)。編號與文字間需有空白。這條路徑不呼叫 Jev；段落中引用編號不視為換題指令。
 - 自然語言使用官方 `POST https://api.typesafe.ai/v1/systemone`、`jev-latest` 與一個 Choice 問題。候選為三任務、`continue`、`clarify`、`out_of_scope`。
 - 每次送出整則訊息判斷一次，不把段落拆成各句獨立路由。近期上下文與目前任務讓「那第二項呢？」可以被辨識為追問。
 - 置信度、最高機率與前兩名差距皆需達門檻，才提出具體任務建議；目前暫定 0.7／0.75／0.25。這些是尚待實際資料校準的介面政策，不是準確率或操作授權。

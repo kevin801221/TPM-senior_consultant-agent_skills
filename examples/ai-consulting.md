@@ -10,6 +10,8 @@
 
 **輸入**
 
+技法全文：[#44 分割煩惱](../references/techniques/044-problem-slicing.md)
+
 ```text
 使用 pm-thinking #44，將「用 AI 改善客服」切成可研究的問題。
 已知：客服經常查找產品文件，尚無耗時與錯誤率數據。
@@ -33,6 +35,8 @@
 
 **輸入**
 
+技法全文：[#31 模擬批評](../references/techniques/031-executive-critique.md)
+
 ```text
 使用 pm-thinking #31，預演以下試點提案。
 提案：先以取得許可的產品文件，協助客服查找並產生附來源的回覆草稿。
@@ -54,6 +58,8 @@
 ## 第三段 最小驗證
 
 **輸入**
+
+技法全文：[#37-2 驗證測試的步驟](../references/techniques/037-validation-test.md)
 
 ```text
 使用 pm-thinking #37-2。

@@ -20,12 +20,12 @@
 
 | PM 技法／目前缺口 | 合作技能 | 分工與交付 |
 | --- | --- | --- |
-| #40／#45／#46；使用者明確要求深入推敲決策 | `grilling` | PM 技法提供分析角度；grilling 主導訪談。沿用已回答的問題，不重複訪談。一般壓力測試可直接用 #30／#31，不自動升級成密集訪談。 |
-| #32／#42／#43／#54；需要查證案例、競品或現況 | `research` | 先交付具體查證問題、範圍與需要支持的決策；研究結果回傳證據、來源、日期與限制。模型聯想不能冒充研究成果。 |
-| #25／#52；名詞或角色定義妨礙溝通 | `domain-modeling` | 釐清角色、關係與術語，依專案既有格式保存。只需沿用既有術語時讀取詞彙表即可，不啟動完整建模。 |
-| #37；必須操作 UI 或狀態模型才能回答的設計問題 | `prototype` | PM 定義問題、要觀察的行為與判讀標準；prototype 建立一次性示範，回傳觀察與決策。若要驗證付費意願，優先設計真實客戶實驗，不能以原型可操作代替市場證據。 |
-| #13／#17；產品方案已選定，需要討論程式模組形狀 | `codebase-design` | 從確認過的產品行為轉成模組、介面與測試位置的設計問題。純工程重構直接使用工程技能，不繞回 PM 發散。 |
-| #24／#25／#38；討論已收斂，需要工程規格及拆票 | `to-spec`、`to-tickets` | 整理下方決策摘要，交給使用者選擇啟動的工程入口。規格與票單保留已知、假設、範圍及驗收條件。 |
+| [#40](../techniques/040-structural-blockers.md)／[#45](../techniques/045-root-cause-questions.md)／[#46](../techniques/046-abstraction-ladder.md)；使用者明確要求深入推敲決策 | `grilling` | PM 技法提供分析角度；grilling 主導訪談。沿用已回答的問題，不重複訪談。一般壓力測試可直接用 [#30](../techniques/030-risk-review.md)／[#31](../techniques/031-executive-critique.md)，不自動升級成密集訪談。 |
+| [#32](../techniques/032-similar-concepts.md)／[#42](../techniques/042-global-precedents.md)／[#43](../techniques/043-cross-domain-cases.md)／[#54](../techniques/054-latest-trends.md)；需要查證案例、競品或現況 | `research` | 先交付具體查證問題、範圍與需要支持的決策；研究結果回傳證據、來源、日期與限制。模型聯想不能冒充研究成果。 |
+| [#25](../techniques/025-six-w-three-h.md)／[#52](../techniques/052-beneficiaries.md)；名詞或角色定義妨礙溝通 | `domain-modeling` | 釐清角色、關係與術語，依專案既有格式保存。只需沿用既有術語時讀取詞彙表即可，不啟動完整建模。 |
+| [#37](../techniques/037-validation-test.md)；必須操作 UI 或狀態模型才能回答的設計問題 | `prototype` | PM 定義問題、要觀察的行為與判讀標準；prototype 建立一次性示範，回傳觀察與決策。若要驗證付費意願，優先設計真實客戶實驗，不能以原型可操作代替市場證據。 |
+| [#13](../techniques/013-triz.md)／[#17](../techniques/017-scamper.md)；產品方案已選定，需要討論程式模組形狀 | `codebase-design` | 從確認過的產品行為轉成模組、介面與測試位置的設計問題。純工程重構直接使用工程技能，不繞回 PM 發散。 |
+| [#24](../techniques/024-idea-sketch.md)／[#25](../techniques/025-six-w-three-h.md)／[#38](../techniques/038-action-plan.md)；討論已收斂，需要工程規格及拆票 | `to-spec`、`to-tickets` | 整理下方決策摘要，交給使用者選擇啟動的工程入口。規格與票單保留已知、假設、範圍及驗收條件。 |
 | 已有規格或任務，使用者要求進入實作 | `implement` | 交接確認過的規格或票單，依該技能安排 `tdd` 與 `code-review`。沒有新產品問題時，不重跑 PM 技法。 |
 
 以上職責依查閱的上游實作整理：[grilling](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md)、[research](https://github.com/mattpocock/skills/blob/main/skills/engineering/research/SKILL.md)、[domain-modeling](https://github.com/mattpocock/skills/blob/main/skills/engineering/domain-modeling/SKILL.md)、[prototype](https://github.com/mattpocock/skills/blob/main/skills/engineering/prototype/SKILL.md)、[codebase-design](https://github.com/mattpocock/skills/blob/main/skills/engineering/codebase-design/SKILL.md)、[to-spec](https://github.com/mattpocock/skills/blob/main/skills/engineering/to-spec/SKILL.md)、[to-tickets](https://github.com/mattpocock/skills/blob/main/skills/engineering/to-tickets/SKILL.md)、[implement](https://github.com/mattpocock/skills/blob/main/skills/engineering/implement/SKILL.md)。
@@ -79,7 +79,7 @@
 
 ## 影片轉簡報的例子
 
-使用者想知道小型設計工作室是否需要這個服務：先用 #48 整理既有工作摩擦，再依需要用 #37 設計人工交付與實際報價測試。若只是三個訪談題目，到此就交付，不自動開始工程。
+使用者想知道小型設計工作室是否需要這個服務：先用 [#48](../techniques/048-product-pain.md) 整理既有工作摩擦，再依需要用 [#37](../techniques/037-validation-test.md) 設計人工交付與實際報價測試。若只是三個訪談題目，到此就交付，不自動開始工程。
 
 如果問題變成「設計師看得懂逐頁的來源時間標記嗎」，把這個問題、觀察任務與判讀標準交給 prototype 做可操作示範。原型回答可用性問題，仍不能證明願意付費。
 

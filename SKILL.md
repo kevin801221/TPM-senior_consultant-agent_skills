@@ -10,7 +10,7 @@ description: Use when the user needs product problem framing, ideation, idea clu
 ## 選擇與載入
 
 1. 從對話確認使用者要做的決策、已知限制與期待產出。能開始就直接做；只有資訊缺口會明顯改變方向時才提問。
-2. **已指定編號：**直接在 `references/techniques/` 找三位數編號開頭的檔案，例如 #33 對應 `033-*.md`。查檔名即可，不需讀路由。使用者說 #37-2 時，讀 #37 檔內的 ②。
+2. **已指定編號：**直接在 `references/techniques/` 找三位數編號開頭的檔案，例如 [#33](references/techniques/033-future-press-release.md) 對應 `033-*.md`。查檔名即可，不需讀路由。使用者說 [#37-2](references/techniques/037-validation-test.md) 時，讀 [#37](references/techniques/037-validation-test.md) 檔內的 ②。
 3. **未指定方法：**讀 [情境路由](references/routing.md)，選足以推進問題的最少技法，通常先做一招。
 4. 只讀選定技法檔。前一步留下重要問題時才追加，不因讀到交叉提及就載入更多方法。除非使用者要求全庫整理，不預讀全部技法或完整來源快照。
 
@@ -42,4 +42,4 @@ description: Use when the user needs product problem framing, ideation, idea clu
 - 角色頭銜、漂亮分數與完整表格不能替代證據。
 - 寫出好新聞稿不等於驗證需求；完成原型不等於取得付費意願。
 
-例如「把 A 一鍵轉簡報、B 可編輯簡報、C 來源時間標記歸類，保留差異」可選 #21，保留 A／B／C 的可追溯性，完成歸類後停止。
+例如「把 A 一鍵轉簡報、B 可編輯簡報、C 來源時間標記歸類，保留差異」可選 [#21](references/techniques/021-idea-clustering.md)，保留 A／B／C 的可追溯性，完成歸類後停止。

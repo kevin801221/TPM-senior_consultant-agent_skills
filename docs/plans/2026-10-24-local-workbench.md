@@ -7,7 +7,7 @@
 ## Decision
 
 Local personal use selected by the user. Use assistant-ui for the custom CLI backend. CopilotKit remains an alternative for future shared agent/UI state; a fully custom chat duplicates state/cancellation logic.
-Initial tasks: #44 problem framing, #31 proposal critique, #37 validation. Required brief: decision, evidence, constraints. Produce a decision-oriented document; follow-ups remain in that task. No external tools or implementation workflow in this version.
+Initial tasks: [#44](../../references/techniques/044-problem-slicing.md) problem framing, [#31](../../references/techniques/031-executive-critique.md) proposal critique, [#37](../../references/techniques/037-validation-test.md) validation. Required brief: decision, evidence, constraints. Produce a decision-oriented document; follow-ups remain in that task. No external tools or implementation workflow in this version.
 
 ## Tasks
 
