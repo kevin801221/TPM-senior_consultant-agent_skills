@@ -23,7 +23,7 @@
 
 <br>
 
-![AI Thinking OS：從零散想法走向清楚決策](assets/img/01-hero.png)
+![AI Thinking OS：從零散想法走向清楚決策](assets/img/v2/01-hero.png)
 
 <br>
 
@@ -163,7 +163,7 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 | 「Agent 看起來什麼都能做，我擔心上線出事。」 | [#30 檢測風險](references/techniques/030-risk-review.md) | 失敗原因、緩解措施與剩餘風險 |
 | 「大家都聽過這個概念，卻沒人說得清價值。」 | [#33 未來新聞稿](references/techniques/033-future-press-release.md) | 受眾、使用情境與價值主張草稿 |
 
-![AI 顧問與 PM 的三個工作現場：需求、提案與驗證](assets/img/02-workbench.png)
+![AI 顧問與 PM 的三個工作現場：需求、提案與驗證](assets/img/v2/02-workbench.png)
 
 <br>
 
@@ -207,7 +207,7 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 
 **你帶回會議的成果：一個範圍清楚、知道如何驗證的試點題目。**
 
-![教學示例：從客服 AI 需求，形成問題切片、關鍵假設與最小驗證](assets/img/03-decision-example.png)
+![教學示例：從客服 AI 需求，形成問題切片、關鍵假設與最小驗證](assets/img/v2/03-decision-example.png)
 
 → [閱讀完整案例：需求診斷、提案預演、試點驗證](examples/ai-consulting.md)
 
@@ -281,7 +281,7 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 | **商業假設與壓力測試** | 商業邏輯成立嗎？可能在哪裡失敗？ | #26–#32 |
 | **表達、驗證與落地** | 價值怎麼說？如何測試？下一步做什麼？ | #33–#38 |
 
-![56 個技法的六大分類：釐清、發散、改善、整理、商業檢視與驗證](assets/img/04-method-map.png)
+![56 個技法的六大分類：釐清、發散、改善、整理、商業檢視與驗證](assets/img/v2/04-method-map.png)
 
 → [開啟完整方法索引與選用邊界](references/routing.md)
 
@@ -298,7 +298,7 @@ Jev 只提供判斷，後端負責白名單、技法載入與執行邊界。它�
 | **保持產出適量** | 只要歸類，就完成歸類；需要計畫，才展開計畫。 |
 | **保留停止選項** | 縮小、暫緩或停止，都可以是有價值的判斷。 |
 
-![Skill 流程：依決策選用方法，足以推進時完成，仍有缺口時才追加](assets/img/05-skill-flow.png)
+![Skill 流程：依決策選用方法，足以推進時完成，仍有缺口時才追加](assets/img/v2/05-skill-flow.png)
 
 <br>
 

@@ -1,4 +1,4 @@
-![AI Thinking OS: frame problems, challenge proposals, design validation](assets/img/01-hero.png)
+![AI Thinking OS: frame problems, challenge proposals, design validation](assets/img/v2/01-hero.png)
 
 # AI Thinking OS
 
@@ -62,7 +62,7 @@ Official discovery rules: [Codex](https://learn.chatgpt.com/docs/build-skills), 
 
 <br>
 
-![AI Thinking OS Method Map: 56 thinking techniques across 6 categories](assets/img/04-method-map.png)
+![AI Thinking OS Method Map: 56 thinking techniques across 6 categories](assets/img/v2/04-method-map.png)
 
 ## How it works
 
@@ -72,7 +72,7 @@ Simulated stakeholder views are not interviews. A future press release is not de
 
 <br>
 
-![Skill Workflow: select technique by decision, complete when sufficient](assets/img/05-skill-flow.png)
+![Skill Workflow: select technique by decision, complete when sufficient](assets/img/v2/05-skill-flow.png)
 
 ## Contribute
 
