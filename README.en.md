@@ -4,11 +4,19 @@
 
 **56 thinking techniques for AI consultants and product managers who need to make a decision.**
 
+Project author: [kevin801221](https://github.com/kevin801221) · [MIT License](LICENSE) for original project contributions; [third-party content exclusions](ATTRIBUTION.md).
+
 Use an AI agent to frame a vague request, challenge a proposal, organize ideas, or design a validation experiment. The skill selects a relevant technique, separates assumptions from evidence, and stops when the requested work is done.
 
 [繁體中文](README.md) · [Technique index](references/routing.md) · [Worked example](examples/ai-consulting.md)
 
 The technique library and worked examples are currently in Traditional Chinese. This file is an English introduction.
+
+## Which domains can use it?
+
+The methods can be adapted to marketing, education, operations, public-interest work, and personal projects whenever the task involves framing a problem, generating ideas, comparing options, or planning validation. Replace the example context with your domain, audience, constraints, and success criteria. These are possible applications, not validated outcomes across every domain; the framework still needs reliable domain knowledge and evidence.
+
+The current guides and examples focus on AI consulting and product management. Automatic skill discovery also emphasizes product and business thinking; for another domain, explicitly request `pm-thinking` or a technique number. The full library contains 56 techniques, while the optional local workbench currently offers three tasks: problem framing, proposal critique, and validation planning.
 
 ## Start with one decision
 
@@ -77,3 +85,9 @@ Simulated stakeholder views are not interviews. A future press release is not de
 ## Contribute
 
 Share a concrete decision, the technique you used, and what remained unclear. Remove confidential information before contributing. See [contribution guidance](CONTRIBUTING.md) and [content attribution and licensing status](ATTRIBUTION.md).
+
+## Author and license
+
+[kevin801221](https://github.com/kevin801221) is the project author and maintainer. Original project code, usage guides, routing rules, examples, and packaging documentation are licensed under the [MIT License](LICENSE). Retain the copyright and permission notices when using or distributing covered material.
+
+The supplied original prompt blocks in `references/techniques/`, and quotations of those prompts elsewhere in the repository, are excluded from this MIT grant. Their public redistribution permission has not been verified. Third-party dependencies retain their own licenses. See [attribution and licensing scope](ATTRIBUTION.md).

@@ -2,6 +2,8 @@
   "name": "ai-thinking-workbench",
   "version": "0.1.0",
   "private": true,
+  "author": "kevin801221 <kevin801221@users.noreply.github.com> (https://github.com/kevin801221)",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "build": "vite build",

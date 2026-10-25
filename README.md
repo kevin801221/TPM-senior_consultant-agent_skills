@@ -10,6 +10,8 @@
 
 <p><strong>56 個思考技法 &nbsp; / &nbsp; 6 大方法分類 &nbsp; / &nbsp; 按需載入的 Agent Skill</strong></p>
 
+<p>專案作者：<a href="https://github.com/kevin801221">kevin801221</a> &nbsp; · &nbsp; <a href="LICENSE">MIT License</a>（自撰內容；<a href="ATTRIBUTION.md">第三方原文例外</a>）</p>
+
 <p>
   <a href="#start">開始使用</a> &nbsp; · &nbsp;
   <a href="#demo">看一個案例</a> &nbsp; · &nbsp;
@@ -26,6 +28,22 @@
 ![AI Thinking OS：從零散想法走向清楚決策](assets/img/v2/01-hero.png)
 
 <br>
+
+## 哪些領域可以用？
+
+**可以跨領域使用，依你要處理的問題選方法。** 釐清問題、發想、整理點子、評估方案與設計驗證，都能運用這套工具。現有指南與案例主要以 AI 顧問和 PM 為情境，其他領域可換入自己的背景、對象、限制與衡量標準。
+
+| 領域示例 | 可以帶進來的問題 | 可先參考的技法 |
+| :--- | :--- | :--- |
+| 行銷與內容 | 活動的價值怎麼說？如何測試受眾是否有興趣？ | [#33](references/techniques/033-future-press-release.md) · [#37](references/techniques/037-validation-test.md) |
+| 教育與培訓 | 學習卡點怎麼拆？如何驗證課程調整？ | [#44](references/techniques/044-problem-slicing.md) · [#37](references/techniques/037-validation-test.md) |
+| 營運與服務 | 流程為什麼卡住？還有哪些改善方式？ | [#45](references/techniques/045-root-cause-questions.md) · [#17](references/techniques/017-scamper.md) |
+| 公益與公共議題 | 問題影響誰？哪些對象可能受益？ | [#41](references/techniques/041-social-problem.md) · [#52](references/techniques/052-beneficiaries.md) |
+| 個人專案與職涯規劃 | 大目標怎麼拆小？下一步如何安排？ | [#44](references/techniques/044-problem-slicing.md) · [#38](references/techniques/038-action-plan.md) |
+
+這些是方法遷移的示例，尚未逐一驗證各領域成效。思考框架不會自動補齊產業知識；仍需提供真實資料，並核對產出的假設與判斷。
+
+目前 `SKILL.md` 的自動觸發描述偏向產品與商業思考；其他領域可明確指定 `pm-thinking` 或技法編號。完整方法庫有 56 招；選用的本機工作台目前提供「釐清需求／提案預演／設計驗證」三個任務。
 
 ## 先註冊為個人 skill：任何專案都能自然觸發
 
@@ -352,6 +370,7 @@ examples/                顧問與 PM 教學示例
 docs/playbook.md         六個可複製的工作入口
 docs/launch-kit.md       Repo 簡介與宣傳文案
 assets/img/              首頁主視覺與方法流程圖解 PNG
+LICENSE                  自撰內容的 MIT 授權條款
 ATTRIBUTION.md           內容來源與授權狀態
 CONTRIBUTING.md          貢獻指南
 ```
@@ -359,11 +378,13 @@ CONTRIBUTING.md          貢獻指南
 </details>
 
 <details>
-<summary><strong>內容來源與授權狀態</strong></summary>
+<summary><strong>作者、MIT 授權與第三方內容</strong></summary>
 
-技法檔案保留使用者提供的《使用 AI 思考的 56 種技法》原始 Prompt，並將使用指南與原文分開。目前未指定整份 Repo 的開源授權；原始 Prompt 的公開散布授權仍待確認。
+專案作者與維護者為 [kevin801221](https://github.com/kevin801221)。本專案自撰的程式、使用指南、情境路由、教學示例與包裝文件採用 [MIT License](LICENSE)。使用或散布適用內容時，請保留版權與授權聲明。
 
-詳見 [內容來源與授權說明](ATTRIBUTION.md)。
+技法檔案保留使用者提供的《使用 AI 思考的 56 種技法》原始 Prompt。這些原文及其在 README 等文件中的引用不在本專案的 MIT 授權範圍內；其公開散布授權仍待確認。第三方套件依各自授權使用。
+
+詳見 [作者、來源與授權範圍](ATTRIBUTION.md)。
 
 </details>
 
